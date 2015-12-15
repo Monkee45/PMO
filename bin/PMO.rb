@@ -1,0 +1,40 @@
+require_relative '../lib/runner/project'
+require_relative '../lib/runner/manager'
+require 'CSV'
+
+obiee = Runner::Project.new("obiee")
+
+member_file = 'members.csv'
+manager_file = 'managers.csv'
+
+# Read the members CSV file
+members = CSV.read(member_file)
+
+# Read the managers CSV file
+managers = CSV.read(manager_file)
+
+#Loop through each row in the array from the members.csv file
+members.each do |member|
+  obiee.add_member(Runner::TeamMember.new(member[0], member[1].to_i))
+end
+#Loop through each row in the array from the managers.csv file
+managers.each do |manager|
+  obiee.add_member(Runner::Manager.new(manager[0], manager[1].to_i, 'manager'))
+end
+
+# mike = Runner::Manager.new('mike',50, 'manager')
+
+obiee.show_members
+
+loop do
+  puts "\nHow many review cycles would you like to do?"
+  no_cycles = gets.chomp
+  case no_cycles
+    when /^\d+$/
+      obiee.review(no_cycles.to_i)
+    else
+      break
+    end
+end
+
+obiee.save_final_ratings
