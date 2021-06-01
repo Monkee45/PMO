@@ -1,5 +1,5 @@
 require_relative 'spec_helper'
-require 'runner/manager'
+require 'Runner/manager'
 
 module Runner
   describe Manager do

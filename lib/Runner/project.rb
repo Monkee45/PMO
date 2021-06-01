@@ -60,7 +60,7 @@ module Runner
     end # review
 
     def save_final_ratings
-      CSV.open("#{Dir.home}/Runner/bin/final_ratings.csv", 'w') do |csv|
+      CSV.open("#{Dir.home}/repos/PMO/bin/final_ratings.csv", 'w') do |csv|
         @members.each do |member|
           csv_string = [member.name,member.rating.to_s]
           csv << csv_string

@@ -49,7 +49,7 @@ module Runner
         @project.review(1)
         @project.save_final_ratings
         puts Dir.home
-        File.exist?("#{Dir.home}/runner/bin/final_ratings.csv").should be true
+        File.exist?("#{Dir.home}/repos/PMO/bin/final_ratings.csv").should be true
       end
     end
 
